@@ -1,0 +1,84 @@
+# Общие исключения для всех проектов
+*.obj
+*.exe
+*.dll
+*.lib
+*.so
+*.dylib
+*.log
+*.tmp
+*.pch
+*.pdb
+*.idb
+*.o
+*.a
+*.class
+*.lo
+*.la
+*.loT
+
+# JUCE-specific files
+*.jucer
+*.autosave
+*.backup
+JuceLibraryCode/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build/
+_Debug/
+_Release/
+Testing/
+
+# Visual Studio
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.*
+*.ncb
+*.suo
+*.vcproj
+*.user
+*.ipch
+*.opensdf
+*.tlog
+*.log
+*.obj
+*.idb
+*.pdb
+*.filters
+
+# MacOS
+.DS_Store
+*.app
+*.dSYM/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Code::Blocks
+*.layout
+*.depend
+*.cbp
+
+# Qt Creator
+*.pro.user
+*.qmake.stash
+*.qmake.cache
+
+# CLion
+.idea/
+cmake-build-debug/
+cmake-build-release/
+
+vcpkg_installed/
+
+# Отладочные и временные файлы
+*.swp
+*.swo
+*~
+*.bak
