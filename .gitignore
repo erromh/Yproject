@@ -50,11 +50,7 @@ Testing/
 *.idb
 *.pdb
 *.filters
-
-# MacOS
-.DS_Store
-*.app
-*.dSYM/
+lib/
 
 # Windows
 Thumbs.db

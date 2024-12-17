@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_BUILD_TYPE Debug)
 
+set(FETCHCONTENT_BASE_DIR ${CMAKE_SOURCE_DIR}/lib)
+
 include(FetchContent)
 FetchContent_Declare(
     juce
@@ -20,8 +22,11 @@ juce_add_gui_app(Yproject
 )
 
 target_sources(Yproject PRIVATE
-    main.cpp
- "CourseLib.h" "CourseLib.cpp" "Process.h")
+    main.cpp 
+    CourseLib.h 
+    CourseLib.cpp 
+    Process.h
+)
 
 target_link_libraries(Yproject PRIVATE
     juce::juce_gui_basics

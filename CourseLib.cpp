@@ -59,12 +59,10 @@ void CourseLib::executeFCFS(std::function<void(const std::string &)> outputCallb
     {
         Process process = lowPriorityQueue.front();
 
-        std::cout << process.processName << '\n';
-
         lowPriorityQueue.pop();
 
-        outputCallback("Executing Process (FCFS): tiuno nxgj" + process.processName + " for " +
-                       std::to_string(process.burstTime) + " units of time.");
+        outputCallback("Executing Process (FCFS): " + process.processName + " for " +
+                       std::to_string(process.burstTime) + " units of time.\n");
         outputCallback("Process ID " + std::to_string(process.id) + " completed.");
     }
 }

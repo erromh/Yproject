@@ -56,13 +56,13 @@ class MainComponent : public juce::Component
         button1.setBounds(20, 210, 120, 40);
         button2.setBounds(150, 210, 120, 40);
 
-        infoLabel.setBounds(20, 280, 760, 300);
+        infoLabel.setBounds(20, 280, 760, 620);
     }
 
   private:
     CourseLib courseLib;
     int processId = 1;
-    int characterLenth = 710;
+    int characterLenth = 990;
 
     // Добавление процесса
     void handleAddProcess()
@@ -104,16 +104,16 @@ class MainComponent : public juce::Component
 
         courseLib.addProcess(processId++, burstTime, priority, taskName);
 
-        if (infoLabel.getText().length() > characterLenth)
-        {
-            infoLabel.setText("", juce::dontSendNotification);
-        }
-
         juce::String currentText = infoLabel.getText();
         currentText += "Added Task: '" + juce::String(taskName) + "' | Priority: " + juce::String(priority) +
                        " | Time: " + juce::String(burstTime) + "\n";
 
         infoLabel.setText(currentText, juce::dontSendNotification);
+
+        if (infoLabel.getText().length() >= characterLenth)
+        {
+            infoLabel.setText("", juce::dontSendNotification);
+        }
     }
 
     void handleExecuteProcesses()
@@ -127,19 +127,15 @@ class MainComponent : public juce::Component
             juce::String currentText = infoLabel.getText();
             currentText += warnings;
             infoLabel.setText(currentText, juce::dontSendNotification);
-
-            if (infoLabel.getText().length() > characterLenth)
-            {
-                infoLabel.setText("", juce::dontSendNotification);
-            }
             return;
         }
 
         juce::String currentText = infoLabel.getText();
         currentText += "\nExecuting Round Robin Tasks:\n";
+
         infoLabel.setText(currentText, juce::dontSendNotification);
 
-        if (infoLabel.getText().length() > characterLenth)
+        if (infoLabel.getText().length() >= 1200)
         {
             infoLabel.setText("", juce::dontSendNotification);
         }
@@ -148,27 +144,16 @@ class MainComponent : public juce::Component
             juce::String currentText = infoLabel.getText();
             currentText += juce::String(output) + "\n";
             infoLabel.setText(currentText, juce::dontSendNotification);
-
-            if (infoLabel.getText().length() > characterLenth)
-            {
-                infoLabel.setText("", juce::dontSendNotification);
-            }
         });
 
         currentText = infoLabel.getText();
-        currentText += "\nExecuting FCFS Tasks:\n\n";
+        currentText += "\nExecuting FCFS Tasks:\n";
         infoLabel.setText(currentText, juce::dontSendNotification);
 
         courseLib.executeFCFS([this](const std::string &output) {
             juce::String currentText = infoLabel.getText();
             currentText += juce::String(output) + "\n";
             infoLabel.setText(currentText, juce::dontSendNotification);
-
-            // Очистка текста при превышении длины
-            if (infoLabel.getText().length() > characterLenth)
-            {
-                infoLabel.setText("", juce::dontSendNotification);
-            }
         });
     }
 
@@ -185,23 +170,20 @@ class MainWindow : public juce::DocumentWindow
   public:
     MainWindow() : DocumentWindow("Task Manager", juce::Colours::lightgrey, DocumentWindow::allButtons)
     {
-        // Устанавливаем основной компонент окна
         setUsingNativeTitleBar(true);
         setContentOwned(new MainComponent(), true);
 
         setResizable(true, true);
-        centreWithSize(800, 600);
+        centreWithSize(850, 800);
         setVisible(true);
     }
 
     void closeButtonPressed() override
     {
-        // Завершаем приложение при закрытии окна
         juce::JUCEApplication::getInstance()->systemRequestedQuit();
     }
 };
 
-// Основное приложение
 class SimpleApp : public juce::JUCEApplication
 {
   public:
